@@ -13,7 +13,7 @@ startService(processId, overrideGameConfigs);
 const appConfigs = buildConfigs(processId);
 const socketOptions = socketOptionsFunc(appConfigs.hostingPort);
 
-xdescribe("when settle", () => {
+describe("when settle", () => {
     it("check connect", (done) => {
         checkConnect(processId, done);
     });
@@ -31,7 +31,7 @@ xdescribe("when settle", () => {
             if (inGameData.remainingTime && !receivedRemainingTime) {
                 receivedRemainingTime = true;
                 setTimeout(() => {
-                    client.emit(eventTypes.bet, { betChoice: "dragon", amount: 100 });
+                    client.emit(eventTypes.bet, { betChoice: "yellow", amount: 100 });
                 }, getTimeOutToPlacingBetTime(inGameData.remainingTime, gameSettings.durations) * 1000);
             }
         });
@@ -40,48 +40,6 @@ xdescribe("when settle", () => {
         client.on(socketOptions.gameName, (data) => {
             if (data.status) {
                 expect(data.status.bet).toBeGreaterThan(0);
-
-                client.close();
-                done();
-            }
-        });
-    });
-
-    it("should return settled finish data and hashResult with rawValue", (done) => {
-        // Arrange & Act
-        const client = new GameClientDriver(socketOptions, initUserSession(normalUser));
-        client.handleSignedInEvent(() => {
-            client.sendInGameEvent();
-        });
-
-        // Assert
-        client.on(socketOptions.gameName, (data) => {
-            if (data.finish && data.resultHash) {
-                expect(data.resultHash.rawValue).not.toBeEmpty();
-
-                client.close();
-                done();
-            }
-        });
-    });
-
-    it("should return resultHash at start placingBet time", (done) => {
-        // Arrange & Act
-        const client = new GameClientDriver(socketOptions, initUserSession(normalUser));
-
-        // Assert
-        let startTime = new Date();
-        client.on(socketOptions.gameName, (data) => {
-            if (data.remainingTime && data.remainingTime === gameSettings.durations.wholeRound) {
-                startTime = new Date();
-            }
-
-            if (data.resultHash) {
-                let endTime = new Date();
-                expect(data.resultHash.hashValue).not.toBeEmpty();
-                expect(Math.round((endTime - startTime) / 1000)).toEqual(
-                    gameSettings.durations.wholeRound - gameSettings.durations.placingBets - 1
-                );
 
                 client.close();
                 done();

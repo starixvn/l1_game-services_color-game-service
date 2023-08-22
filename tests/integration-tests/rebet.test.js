@@ -20,7 +20,7 @@ startService(processId, overrideGameConfigs);
 const appConfigs = buildConfigs(processId);
 const socketOptions = socketOptionsFunc(appConfigs.hostingPort);
 
-xdescribe("rebet", () => {
+describe("rebet", () => {
     it("check connect", (done) => {
         checkConnect(processId, done);
     });
@@ -46,7 +46,7 @@ xdescribe("rebet", () => {
             // Assert
             client.on(socketOptions.gameName, (data) => {
                 if (data.rebet) {                    
-                    expect(data.ownBets).toEqual({ dragon: 102, tie: 12 });
+                    expect(data.ownBets).toEqual({ yellow: 102, pink: 12 });
 
                     client.close();
                     done();
