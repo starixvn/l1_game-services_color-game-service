@@ -1,5 +1,6 @@
 import { Chance } from "chance";
 import * as DiceRandom from "./dice-random";
+import constants from "../constants";
 
 const settlementRuleEntries = Object.entries({
     yellow: (diceArray) => diceArray.some((dice) => dice === constants.resultMapper.yellow),
