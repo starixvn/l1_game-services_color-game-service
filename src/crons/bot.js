@@ -7,13 +7,11 @@ export default class Bot extends Table.Crons.TableGameBot {
         super(definition, gameData, publisher, userInfosRepository, tempBetsRepository);
 
         this.appConfigs = appConfigs;
-        this.betChoiceRatio = { DragonTiger: 70, DragonColor: 14, TigerColor: 14, Tie: 2};
+        this.betChoiceRatio = { SpecificColor: 80, ColorGroup: 20};
 
-        this.dragonTigerOpts = ["dragon", "tiger"];
-        this.dragonColorOpts = ["blackDragon", "redDragon"];
-        this.tigerColorOpts = ["blackTiger", "redTiger"];
-        this.tieOpts = ["tie"];
-        this.hedgeBetGroups = [this.dragonTigerOpts];
+        this.specificColorOpts = ["yellow", "red", "pink", "white", "blue", "green"];
+        this.colorGroupOpts = ["hot", "cold"];
+        this.hedgeBetGroups = [this.colorGroupOpts];
         this.smallTicketRatio = 70;
     }
 
@@ -24,13 +22,14 @@ export default class Bot extends Table.Crons.TableGameBot {
 
     resetAllBets() {
         this.allBets = {
-            dragon: 0,
-            tiger: 0,
-            tie: 0,
-            blackDragon: 0,
-            redDragon: 0,
-            blackTiger: 0,
-            redTiger: 0,
+            yellow: 0,
+            red: 0,
+            pink: 0,
+            white: 0,
+            blue: 0,
+            green: 0,
+            hot: 0,
+            cold: 0,
         };
 
         this.smallTickets = 0;
@@ -41,24 +40,13 @@ export default class Bot extends Table.Crons.TableGameBot {
 
         const betChoiceRatios = [
             {
-                group: this.dragonTigerOpts,
-                underBetRatio:
-                    (this.getTotalAmountOnChoiceGroup(this.dragonTigerOpts) * 100) / totalBotBet < this.betChoiceRatio.DragonTiger,
+                group: this.specificColorOpts,
+                underBetRatio: (this.getTotalAmountOnChoiceGroup(this.specificColorOpts) * 100) / totalBotBet < this.betChoiceRatio.SpecificColor,
             },
             {
-                group: this.dragonColorOpts,
-                underBetRatio:
-                    (this.getTotalAmountOnChoiceGroup(this.dragonColorOpts) * 100) / totalBotBet <
-                    this.betChoiceRatio.DragonColor,
-            },
-            {
-                group: this.tigerColorOpts,
-                underBetRatio: (this.getTotalAmountOnChoiceGroup(this.tigerColorOpts) * 100) / totalBotBet < this.betChoiceRatio.TigerColor,
-            },
-            {
-                group: this.tieOpts,
-                underBetRatio: (this.getTotalAmountOnChoiceGroup(this.tieOpts) * 100) / totalBotBet < this.betChoiceRatio.Tie,
-            },
+                group: this.colorGroupOpts,
+                underBetRatio: (this.getTotalAmountOnChoiceGroup(this.colorGroupOpts) * 100) / totalBotBet < this.betChoiceRatio.ColorGroup,
+            },          
         ];
 
         const underRatioGroups = helpers.arrayHelper.shuffle(betChoiceRatios.filter((data) => data.underBetRatio));
@@ -66,7 +54,7 @@ export default class Bot extends Table.Crons.TableGameBot {
         const choice =
             underRatioGroups.length > 0
                 ? this.chance.pickone(underRatioGroups[0].group)
-                : this.chance.pickone(this.dragonTigerOpts);
+                : this.chance.pickone(this.specificColorOpts);
 
         const hedgeBetGroup = this.hedgeBetGroups.find(group => group.includes(choice));
         if(hedgeBetGroup){
@@ -85,7 +73,7 @@ export default class Bot extends Table.Crons.TableGameBot {
         const botMaxBet = gameConfigs.bot_maxbet;
         const maxBet = Math.min(maxBetPerChoice, botMaxBet);
 
-        if (this.dragonTigerOpts.includes(choice) || this.dragonColorOpts.includes(choice) || this.tigerColorOpts.includes(choice)) {
+        if (this.specificColorOpts.includes(choice) || this.colorGroupOpts.includes(choice)) {
             const isSmallTicket = this.totalTickets === 0 ? true : (this.smallTickets * 100) / this.totalTickets < this.smallTicketRatio;
             const maxBetOfSmallTicket = Math.min(minBet * 50, botMaxBet * 0.3);
             return isSmallTicket ? maxBetOfSmallTicket : maxBet;

@@ -3,8 +3,6 @@ import { startService } from "./_stubs/test-jobs";
 import {
     getProcessId,
     buildConfigs,
-    getTimeOutToBetInvalid,
-    getTimeOutToPlacingBetTime,
     initUserSession,
     checkConnect,
 } from "./_stubs/helper";
@@ -18,7 +16,7 @@ startService(processId);
 const appConfigs = buildConfigs(processId);
 const socketOptions = socketOptionsFunc(appConfigs.hostingPort);
 
-xdescribe("bot", () => {
+describe("bot", () => {
     it("check connect", (done) => {
         checkConnect(processId, done);
     });

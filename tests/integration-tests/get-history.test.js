@@ -12,7 +12,7 @@ startService(processId, overrideGameConfigs);
 const appConfigs = buildConfigs(processId);
 const socketOptions = socketOptionsFunc(appConfigs.hostingPort);
 
-xdescribe("when get history", () => {
+describe("when get history", () => {
     it("check connect", (done) => {
         checkConnect(processId, done);
     });
@@ -25,33 +25,35 @@ xdescribe("when get history", () => {
         });
         const expectedData = [
             {
-                dragon: 10,
-                tiger: 0,
-                tie: 100,
-                blackDragon: 0,
-                redDragon: 0,
-                blackTiger: 0,
-                redTiger: 0,
+                yellow: 0,
+                red: 10,
+                pink: 0,
+                white: 0,
+                blue: 0,
+                green: 0,
+                hot: 0,
+                cold: 0,
                 freeBet: false,
                 name: "NormalUser",
-                odds: { dragon: 1.97, tiger: 1.97, tie: 3.76, blackDragon: 3.76, redDragon: 14.5, blackTiger: 14.5, redTiger: 2.5 },
+                odds: { single: 1.97, double: 2.97, triple: 3.76, hot: 3.76, cold: 2.5 },
                 rate: 1,
-                betLogDetails: [{choice: "tie", amount: 100, rebet: false, rate: 1, roundId: 1190120}],
+                betLogDetails: [{choice: "red", amount: 10, rebet: false, rate: 1, roundId: 1190120}],
                 roundId: 1190120,
                 phien: 1190120,
                 totalAmount: 110
             },
             {
-                dragon: 102,
-                tiger: 0,
-                tie: 12,
-                blackDragon: 0,
-                redDragon: 0,
-                blackTiger: 0,
-                redTiger: 0,
+                yellow: 102,
+                red: 0,
+                pink: 12,
+                white: 0,
+                blue: 0,
+                green: 0,
+                hot: 0,
+                cold: 0,
                 freeBet: false,
                 name: "NormalUser",
-                odds: { dragon: 1.97, tiger: 1.97, tie: 3.76, blackDragon: 3.76, redDragon: 14.5, blackTiger: 14.5, redTiger: 2.5 },
+                odds: { single: 1.97, double: 2.97, triple: 3.76, hot: 3.76, cold: 2.5 },
                 rate: 1,
                 betLogDetails: [],
                 roundId: 1190119,
