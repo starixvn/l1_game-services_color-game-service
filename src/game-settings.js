@@ -1,5 +1,5 @@
 export default {
-    id: 67,
+    id: 71,
     name: "ColorGame",
     durations: {
         wholeRound: 40,
