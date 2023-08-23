@@ -5,10 +5,10 @@ const bet = {
     name: { type: String, required: true },
 
     yellow: { type: Number, default: 0 },
-    red: { type: Number, default: 0 },    
+    red: { type: Number, default: 0 },
     pink: { type: Number, default: 0 },
     white: { type: Number, default: 0 },
-    blue: { type: Number, default: 0 },    
+    blue: { type: Number, default: 0 },
     green: { type: Number, default: 0 },
     hot: { type: Number, default: 0 },
     cold: { type: Number, default: 0 },

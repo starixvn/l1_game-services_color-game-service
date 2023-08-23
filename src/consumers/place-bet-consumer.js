@@ -13,7 +13,7 @@ export default class PlaceBetConsumer extends BasePlaceBetConsumer {
             {
                 failure: roundId !== this.gameData.roundId,
                 notice: this.getNoticeObj(helpers.noticeHelper.invalidBet, { gameRoundId: roundId }),
-            },           
+            },
             {
                 failure: this.gameData.remainingTime < this.definition.durations.lockingBet || this.gameData.remainingTime >= this.definition.durations.placingBets,
                 notice: this.getNoticeObj(helpers.noticeHelper.placeBetNextRound),

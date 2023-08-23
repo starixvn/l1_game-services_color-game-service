@@ -72,5 +72,5 @@ export default class SettleGameRoundConsumer extends Table.EventConsumers.TableS
         else{
             return "";
         }
-    }    
+    }
 }

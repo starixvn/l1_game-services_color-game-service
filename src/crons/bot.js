@@ -46,7 +46,7 @@ export default class Bot extends Table.Crons.TableGameBot {
             {
                 group: this.colorGroupOpts,
                 underBetRatio: (this.getTotalAmountOnChoiceGroup(this.colorGroupOpts) * 100) / totalBotBet < this.betChoiceRatio.ColorGroup,
-            },          
+            },
         ];
 
         const underRatioGroups = helpers.arrayHelper.shuffle(betChoiceRatios.filter((data) => data.underBetRatio));
