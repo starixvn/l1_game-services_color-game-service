@@ -14,10 +14,10 @@ const resultSchema = new mongoose.Schema(
 const settlementResultSchema = new mongoose.Schema(
     {
         yellow: { type: Boolean, default: false },
-        red: { type: Boolean, default: false },        
+        red: { type: Boolean, default: false },
         pink: { type: Boolean, default: false },
         white: { type: Boolean, default: false },
-        blue: { type: Boolean, default: false },        
+        blue: { type: Boolean, default: false },
         green: { type: Boolean, default: false },
         hot: { type: Boolean, default: false },
         cold: { type: Boolean, default: false },
