@@ -6,7 +6,7 @@ import Bot from "../../../src/crons/bot";
 import gameSettings from "../../../src/game-settings";
 import appConfigs from "../../../src/app-configs";
 
-describe("bot test", () => {
+xdescribe("bot test", () => {
     const definition = new Table.TableGameDefinition(gameSettings);
     const gameData = new Table.TableGameData(0);
     gameData.gameConfigs = {

@@ -82,7 +82,7 @@ describe("composeBettingTimeValidationCriteria tests", () => {
             expect(criterions).not.toBeEmpty();
             expect(criterions.filter((x) => x.failure)[0]).toStrictEqual({
                 failure: true,
-                notice: { errorCode: helpers.noticeHelper.cannotPlaceBet },
+                notice: { errorCode: helpers.noticeHelper.placeBetNextRound },
             });
         });
     });

@@ -23,15 +23,13 @@ export default class SettleGameRoundConsumer extends Table.EventConsumers.TableS
                 })
             );
         }
-
-        this.roundResultPublisher.publishRoundResult(this.collectRoundResult(result, settlementResult, roundId));
     }
 
     calculateBetResult(settlementResult, bet, odds, roundResult) {
         const betResult = Object.entries(settlementResult).reduce(
             (result, [choice, win]) => {
                 const betAmount = bet[choice];
-                const originalOdds = odds[this.getWinningOddName(roundResult, choice)] || 1;
+                const originalOdds = odds[this.getWinningOddName(roundResult, choice, win)] || 1;
                 const effectiveOdds = bet.freeBet ? originalOdds - 1 : originalOdds;
                 const winAmount = win ? betAmount * effectiveOdds : 0;
 
