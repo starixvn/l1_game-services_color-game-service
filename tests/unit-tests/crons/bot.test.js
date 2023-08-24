@@ -6,19 +6,11 @@ import Bot from "../../../src/crons/bot";
 import gameSettings from "../../../src/game-settings";
 import appConfigs from "../../../src/app-configs";
 
-xdescribe("bot test", () => {
+describe("bot test", () => {
     const definition = new Table.TableGameDefinition(gameSettings);
     const gameData = new Table.TableGameData(0);
     gameData.gameConfigs = {
-        choices_maxbet: {
-            dragon: 10000,
-            tiger: 10000,
-            tie: 500,
-            blackDragon: 500,
-            redDragon: 200,
-            blackTiger: 200,
-            redTiger: 200,
-        },
+        choices_maxbet: { yellow: 10000, red: 10000, pink: 10000, white: 10000, blue: 10000, green: 10000, hot: 10000, cold: 10000 },
         minbet: 1,
         bot_maxbet: 2000,
     };
@@ -61,34 +53,26 @@ xdescribe("bot test", () => {
             botInstance.resetAllBotData();
         });
 
-        it("should return dragon tiger options when they are not reached", () => {
-            botInstance.allBets = {
-                dragon: 400,
-                tiger: 300,
-                tie: 200,
-                blackDragon: 200,
-                redDragon: 100,
-                blackTiger: 100,
-                redTiger: 100,
-            };
+        it("should return specific color options when they are not reached", () => {
+            botInstance.allBets = { yellow: 3000, red: 3000, pink: 3000, white: 3000, blue: 3000, green: 3000, hot: 3000, cold: 3000 };
 
             const choice = botInstance.getBetChoice(bot);
 
-            expect(botInstance.dragonTigerOpts).toContain(choice);
+            expect(botInstance.specificColorOpts).toContain(choice);
         });
 
-        it("should return dragon tiger options as default", () => {
+        it("should return specific color options as default", () => {
             botInstance.resetAllBets();
 
             const choice = botInstance.getBetChoice(bot);
 
-            expect(botInstance.dragonTigerOpts).toContain(choice);
+            expect(botInstance.specificColorOpts).toContain(choice);
         });
     });
 
     describe("getMaxBet", () => {
         it("should return value between min and max bet config", () => {
-            const choice = "dragon";
+            const choice = "yellow";
             const { bot_maxbet, minbet, choices_maxbet } = gameData.gameConfigs;
             const maxBet = Math.min(bot_maxbet, choices_maxbet[choice]);
 
@@ -104,7 +88,7 @@ xdescribe("bot test", () => {
             spyOn(Table.Crons.TableGameBot.prototype, "updateBotInRoomData");
     
             // act
-            botInstance.updateBotInRoomData(bot, "dragon", 10, 100);
+            botInstance.updateBotInRoomData(bot, "yellow", 10, 100);
     
             // assert
             expect(Table.Crons.TableGameBot.prototype.updateBotInRoomData).toHaveBeenCalled();
