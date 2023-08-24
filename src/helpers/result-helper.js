@@ -9,8 +9,8 @@ const settlementRuleEntries = Object.entries({
     white: (diceArray) => diceArray.some((dice) => dice === constants.resultMapper.white),
     blue: (diceArray) => diceArray.some((dice) => dice === constants.resultMapper.blue),
     green: (diceArray) => diceArray.some((dice) => dice === constants.resultMapper.green),
-    hot: (diceArray) => diceArray.filter((dice) => dice < 3).length >= 2,
-    cold: (diceArray) => diceArray.filter((dice) => dice >= 3).length >= 2,
+    hot: (diceArray) => diceArray.filter((dice) => [constants.resultMapper.yellow, constants.resultMapper.red, constants.resultMapper.pink].includes(dice)).length >= 2,
+    cold: (diceArray) => diceArray.filter((dice) => [constants.resultMapper.white, constants.resultMapper.blue, constants.resultMapper.green].includes(dice)).length >= 2,
 });
 
 export const generateResult = (randomMode) => {
