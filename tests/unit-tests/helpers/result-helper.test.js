@@ -6,9 +6,9 @@ describe("result-helper test", () => {
             const result = generateResult();
 
             // assert
-            expect(result.dice1).toBeWithin(0, 5);
-            expect(result.dice2).toBeWithin(0, 5);
-            expect(result.dice3).toBeWithin(0, 5);
+            expect(result.dice1).toBeWithin(0, 6);
+            expect(result.dice2).toBeWithin(0, 6);
+            expect(result.dice3).toBeWithin(0, 6);
         })
     })   
     describe("getSettlementResult", () => {

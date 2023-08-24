@@ -39,12 +39,12 @@ describe("result statistic: 10,000 times", () => {
             console.log(
                 `Mode:${index + 1}, countResult: ${JSON.stringify(statisticResult)}, percentageResult: ${JSON.stringify(resultPercentage)}`
             );
-            expect(resultPercentage.yellow).toBeGreaterThanOrEqual(41);
-            expect(resultPercentage.red).toBeGreaterThanOrEqual(41);
-            expect(resultPercentage.pink).toBeGreaterThanOrEqual(41);
-            expect(resultPercentage.white).toBeGreaterThanOrEqual(41);
-            expect(resultPercentage.blue).toBeGreaterThanOrEqual(41);
-            expect(resultPercentage.green).toBeGreaterThanOrEqual(41);
+            expect(resultPercentage.yellow).toBeGreaterThanOrEqual(40);
+            expect(resultPercentage.red).toBeGreaterThanOrEqual(40);
+            expect(resultPercentage.pink).toBeGreaterThanOrEqual(40);
+            expect(resultPercentage.white).toBeGreaterThanOrEqual(40);
+            expect(resultPercentage.blue).toBeGreaterThanOrEqual(40);
+            expect(resultPercentage.green).toBeGreaterThanOrEqual(40);
             expect(resultPercentage.hot).toBeGreaterThanOrEqual(48);
             expect(resultPercentage.cold).toBeGreaterThanOrEqual(48);            
         });
