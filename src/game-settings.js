@@ -11,5 +11,5 @@ export default {
     hedgeBetGroups: [
         ["hot", "cold"]
     ],
-    numberOfRoundHistory: 102,
+    numberOfRoundHistory: 100,
 };
