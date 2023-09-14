@@ -33,11 +33,11 @@
         "random": "^3.0.6",
         "random-js": "^2.1.0",
         "random-int": "^3.0.0",
-        "sc-game-base": "4.0.0",
+        "sc-game-base": "4.0.1",
         "sc-rebet-mode": "1.0.3"
     },
     "resolutions": {
-        "sc-game-base": "4.0.0"
+        "sc-game-base": "4.0.1"
     },
     "devDependencies": {
         "@babel/preset-env": "^7.12.11",
