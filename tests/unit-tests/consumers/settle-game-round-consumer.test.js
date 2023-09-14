@@ -3,7 +3,6 @@ import mongoose from "mongoose";
 import SettleGameRoundConsumer from "../../../src/consumers/settle-game-round-consumer";
 import { Core } from "sc-game-base";
 
-jest.mock("../../../src/constants");
 jest.mock("sc-game-base/src/core/event-publishers/round-result-publisher");
 jest.mock("sc-game-base/src/core/event-publishers/user-bet-result-publisher");
 

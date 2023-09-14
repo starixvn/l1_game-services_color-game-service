@@ -61,7 +61,7 @@ export default class SettleGameRoundConsumer extends Table.EventConsumers.TableS
     }
 
     getWinningOddName(result, choice, win){
-        if(["hot", "cold"].includes(choice) && win){
+        if(constants.choicesWithSameOddName.includes(choice) && win){
             return choice;
         }
         else if(win){ // single, double, triple
