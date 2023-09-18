@@ -7,5 +7,5 @@ variables:
 
 include:
   - project: "ci/core-cicd"
-    ref: main
+    ref: update-smoke-test
     file: "luminet.gitlab-ci.yml"
