@@ -21,7 +21,7 @@ export default {
     },
     enabledLogs: true,
     database: {
-        url: "mongodb://localhost:27017",
+        url: "mongodb://lmn_backend:LmnBackend@10.10.50.12:39101,10.10.50.13:39101,10.10.50.14:39101/?replicaSet=L1pLocal&appName=ColorGame",
         options: {
             dbName: "minigame",
             useNewUrlParser: true,

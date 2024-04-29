@@ -26,13 +26,15 @@
         "indent": 4
     },
     "dependencies": {
-        "chance": "^1.1.7",
+        "bootstrap": "^5.3.3",
+        "canvas": "^2.11.2",
+        "chance": "^1.1.11",
         "d3-array": "^3.2.0",
         "lodash": "^4.17.19",
         "nodemon": "^2.0.4",
         "random": "^3.0.6",
-        "random-js": "^2.1.0",
         "random-int": "^3.0.0",
+        "random-js": "^2.1.0",
         "sc-game-base": "4.0.1",
         "sc-rebet-mode": "1.0.3"
     },

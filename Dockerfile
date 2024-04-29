@@ -1,6 +1,8 @@
 FROM hub.lumigame.com/docker-hub/library/node:18.1-alpine AS builder
 WORKDIR /app
 COPY package.json yarn.lock .modprunerrc ./
+RUN apk add --update python make g++\
+   && rm -rf /var/cache/apk/*
 RUN npm run reg \
     && yarn install --production \
     && npx mod-pruner prune --force
@@ -9,6 +11,8 @@ COPY ./src/ .
 FROM hub.lumigame.com/docker-hub/library/node:18.1-alpine
 ARG NODE_ENV=production
 ENV NODE_ENV $NODE_ENV
+RUN apk add --update python make g++\
+   && rm -rf /var/cache/apk/*
 RUN mkdir /app && chown node:node /app
 WORKDIR /app
 
